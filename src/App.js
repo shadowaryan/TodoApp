@@ -5,12 +5,7 @@ import { Todos } from "./MyComponent/Todos";
 import React, { useState, useEffect } from 'react';
 import AddTodo from "./MyComponent/AddTodo";
 import { About } from "./MyComponent/About";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import {BrowserRouter as Router,Routes ,Route} from "react-router-dom";
 
 
 
@@ -64,20 +59,19 @@ function App() {
     <>
     <Router>
       <Header title="My Tdod List"/>
-      <Switch>
-          <Route exact path="/" render={()=>{
-            return(
-              <>
-              <AddTodo addTodo={addTodo}/>
-              <Todos todos={todos} onDelete={onDelete}/>
-              </>
-            )
-          }}>
+      <Routes>
+          <Route exact path="" 
+            element={
+                <>
+                <AddTodo addTodo={addTodo}/>
+                <Todos todos={todos} onDelete={onDelete}/>
+                </>
+            }>
           </Route>
-          <Route path="/about">
-            <About/>
+          <Route exact path="about" element={<About/>}>
+            
           </Route>
-        </Switch>
+     </Routes>
       
       <Footer/>
     </Router>
